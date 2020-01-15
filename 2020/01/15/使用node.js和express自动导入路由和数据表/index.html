@@ -6,17 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 梢_的博客</title>
+  <title>使用node.js和express自动导入路由和数据表 | 梢_的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="node.js,android,java,网络攻防,javascript">
+  <meta name="description" content="当我们添加一个路由时 每次都需要在app.js 去设置路由 这样比较繁琐。我们可以通过创建一个模块来 自动设置文件夹下的所以路由。在路由表文件夹下创建一个index.js通过 fs 获取文件夹下所有.js的文件 index.js除外（readdirSync方法）再获取文件的路径（forEach方法）  因为app.js里面设置的原理也是通过路径 来获取路由对象的再通过数组保存路径  1234567">
 <meta name="keywords" content="node.js,android,java,网络攻防,javascript">
-<meta property="og:type" content="website">
-<meta property="og:title" content="梢_的博客">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用node.js和express自动导入路由和数据表">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;%E4%BD%BF%E7%94%A8node.js%E5%92%8Cexpress%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B7%AF%E7%94%B1%E5%92%8C%E6%95%B0%E6%8D%AE%E8%A1%A8&#x2F;index.html">
 <meta property="og:site_name" content="梢_的博客">
-<meta property="og:description" content="node.js,android,java,网络攻防,javascript">
+<meta property="og:description" content="当我们添加一个路由时 每次都需要在app.js 去设置路由 这样比较繁琐。我们可以通过创建一个模块来 自动设置文件夹下的所以路由。在路由表文件夹下创建一个index.js通过 fs 获取文件夹下所有.js的文件 index.js除外（readdirSync方法）再获取文件的路径（forEach方法）  因为app.js里面设置的原理也是通过路径 来获取路由对象的再通过数组保存路径  1234567">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019062411254218.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019062411265130.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20190624114615572.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20190624115434259.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20190625152051681.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20190625152403625.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20190624120002212.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2020-01-15T07:34:38.250Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019062411254218.png">
   
     <link rel="alternative" href="/atom.xml" title="梢_的博客" type="application/atom+xml">
   
@@ -152,76 +161,165 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-使用node.js和express自动导入路由和数据表" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      使用node.js和express自动导入路由和数据表
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/15/%E4%BD%BF%E7%94%A8node.js%E5%92%8Cexpress%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B7%AF%E7%94%B1%E5%92%8C%E6%95%B0%E6%8D%AE%E8%A1%A8/" class="archive-article-date">
+
+        
+        <a href="/2020/01/15/%E4%BD%BF%E7%94%A8node.js%E5%92%8Cexpress%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B7%AF%E7%94%B1%E5%92%8C%E6%95%B0%E6%8D%AE%E8%A1%A8/" class="archive-article-date">
   	<time datetime="2020-01-15T07:34:38.147Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/15/%E4%BD%BF%E7%94%A8node.js%E5%92%8Cexpress%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B7%AF%E7%94%B1%E5%92%8C%E6%95%B0%E6%8D%AE%E8%A1%A8/">使用node.js和express自动导入路由和数据表</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当我们添加一个路由时 每次都需要在app.js 去设置路由 这样比较繁琐。<br><img src="https://img-blog.csdnimg.cn/2019062411254218.png" alt="app.js获取路由对象"><br><img src="https://img-blog.csdnimg.cn/2019062411265130.png" alt="设置路由"><br>我们可以通过创建一个模块来 自动设置文件夹下的所以路由。<br>在路由表文件夹下创建一个index.js<br>通过 fs 获取文件夹下所有.js的文件 index.js除外（readdirSync方法）<br>再获取文件的路径（forEach方法）  因为app.js里面设置的原理也是通过路径 来获取路由对象的<br>再通过数组保存路径</p>
+<p><img src="https://img-blog.csdnimg.cn/20190624114615572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">let fs=require(&apos;fs&apos;);</span><br><span class="line"></span><br><span class="line">let path=require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">let apis=[];</span><br><span class="line"></span><br><span class="line">fs.readdirSync(__dirname)</span><br><span class="line">.filter(function(filename)&#123;</span><br><span class="line">    return (filename!==&apos;index.js&apos;)&amp;&amp;(filename.slice(-3)===&apos;.js&apos;);</span><br><span class="line">&#125;)</span><br><span class="line">.forEach(function(filename)&#123;</span><br><span class="line">    let filepath=path.join(__dirname,filename);</span><br><span class="line">    apis.push(require(filepath))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var express=require(&apos;express&apos;);</span><br><span class="line">var router=express.Router();</span><br><span class="line"></span><br><span class="line">router.use(&apos;/&apos;,apis);</span><br><span class="line">module.exports=router;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>代码如图<br>然后在app.js里面 添加一个模块的路由就行了 以后访问就是 <a href="http://localhost:3000/apis/xxx" target="_blank" rel="noopener">http://localhost:3000/apis/xxx</a><br>我这里用的自己主机<br>注意！！ url那里的apis 是和你自己设置路由的名字是一样的 不然不能访问</p>
+<p><img src="https://img-blog.csdnimg.cn/20190624115434259.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>下面我们来试试<br><img src="https://img-blog.csdnimg.cn/20190625152051681.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="使用postman 发送请求"><br><img src="https://img-blog.csdnimg.cn/20190625152403625.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="可以看到已经成功响应了"><br>数据库表的导入差不多 我在models 下建了table.js 模块<br>代码如下<br><img src="https://img-blog.csdnimg.cn/20190624120002212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">let Sequlize=require(&apos;sequelize&apos;);</span><br><span class="line"></span><br><span class="line">let fs=require(&apos;fs&apos;);</span><br><span class="line"></span><br><span class="line">let path=require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">let sequelize=new Sequlize(&quot;test&quot;,&quot;stu&quot;,&quot;Ydyykf17&quot;,&#123;</span><br><span class="line">  host:&quot;192.168.1.52&quot;,</span><br><span class="line">  dialect:&quot;mysql&quot;,</span><br><span class="line">  timezone:&quot;+8:00&quot;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">let db=&#123;&#125;;</span><br><span class="line">fs.readdirSync(__dirname)</span><br><span class="line">.filter(function(filename)</span><br><span class="line">&#123;</span><br><span class="line">  return (filename!==&apos;tables.js&apos;)&amp;&amp;(filename.slice(-3)===&apos;.js&apos;);</span><br><span class="line">&#125;)</span><br><span class="line">.forEach(function(filename)&#123;</span><br><span class="line">let filepath=path.join(__dirname,filename);</span><br><span class="line">let model=sequelize.import(filepath);</span><br><span class="line">db[model.name]=model;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">sequelize.sync();</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  db</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
+
+<p>第一次写 不足之处可以支持 一起进步<br>谢谢哦</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>touxiang/15790714311.jpg<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" target="_blank" rel="noopener" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/15/%E4%BD%BF%E7%94%A8node.js%E5%92%8Cexpress%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B7%AF%E7%94%B1%E5%92%8C%E6%95%B0%E6%8D%AE%E8%A1%A8/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/15/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2_%E4%B8%BB%E6%9C%BA%E6%BA%A2%E5%87%BA%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%EF%BC%88%E5%8C%85%E5%90%AB%E5%B7%A5%E5%85%B7%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-01-15T03:28:29.057Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-15</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/01/15/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2_%E4%B8%BB%E6%9C%BA%E6%BA%A2%E5%87%BA%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%EF%BC%88%E5%8C%85%E5%90%AB%E5%B7%A5%E5%85%B7%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">墨者学院_主机溢出提权漏洞（包含工具）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/15/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2_%E4%B8%BB%E6%9C%BA%E6%BA%A2%E5%87%BA%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%EF%BC%88%E5%8C%85%E5%90%AB%E5%B7%A5%E5%85%B7%EF%BC%89/">墨者学院_主机溢出提权漏洞（包含工具）</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -244,8 +342,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
