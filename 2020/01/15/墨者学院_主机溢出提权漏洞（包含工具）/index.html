@@ -6,14 +6,34 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Hexo</title>
+  <title>墨者学院_主机溢出提权漏洞（包含工具） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2019&#x2F;index.html">
+  <meta name="description" content="墨者学院之主机溢出提权漏洞分析（包含提权工具）1.启动环境 2.这里使用asp一句话木马 密码为pass3. 设置浏览器代理 这里使用了Google浏览器 4.设置好代理后打开抓包工具 Burp Suite 5.上传我们写好的木马 点go 上传  6.抓包截取数据包后 在upload下建立一个后缀为.asp的目录 修改后放行 7.这里我们看到文件已经上传到服务器了 下面我们开始联菜刀 8.链接菜刀">
+<meta property="og:type" content="article">
+<meta property="og:title" content="墨者学院_主机溢出提权漏洞（包含工具）">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2_%E4%B8%BB%E6%9C%BA%E6%BA%A2%E5%87%BA%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%EF%BC%88%E5%8C%85%E5%90%AB%E5%B7%A5%E5%85%B7%EF%BC%89&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="墨者学院之主机溢出提权漏洞分析（包含提权工具）1.启动环境 2.这里使用asp一句话木马 密码为pass3. 设置浏览器代理 这里使用了Google浏览器 4.设置好代理后打开抓包工具 Burp Suite 5.上传我们写好的木马 点go 上传  6.抓包截取数据包后 在upload下建立一个后缀为.asp的目录 修改后放行 7.这里我们看到文件已经上传到服务器了 下面我们开始联菜刀 8.链接菜刀">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210105620910.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210105700262.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210105714965.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210105747982.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210105809168.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210105831230.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210105845852.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019121010590652.PNG">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019121010594784.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210110001393.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210110014675.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210110032185.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210110443452.PNG">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210110511944.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210110528213.PNG">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210110537745.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2020-01-15T03:27:09.316Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210105620910.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -149,49 +169,165 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-墨者学院_主机溢出提权漏洞（包含工具）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/05/hello-world/" class="archive-article-date">
-  	<time datetime="2019-11-05T08:21:37.823Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-05</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/05/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      墨者学院_主机溢出提权漏洞（包含工具）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2020/01/15/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2_%E4%B8%BB%E6%9C%BA%E6%BA%A2%E5%87%BA%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%EF%BC%88%E5%8C%85%E5%90%AB%E5%B7%A5%E5%85%B7%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-01-15T03:28:29.057Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="墨者学院之主机溢出提权漏洞分析（包含提权工具）"><a href="#墨者学院之主机溢出提权漏洞分析（包含提权工具）" class="headerlink" title="墨者学院之主机溢出提权漏洞分析（包含提权工具）"></a><strong>墨者学院之主机溢出提权漏洞分析（包含提权工具）</strong></h2><p>1.启动环境</p>
+<p><img src="https://img-blog.csdnimg.cn/20191210105620910.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.这里使用asp一句话木马 密码为pass<br><img src="https://img-blog.csdnimg.cn/20191210105700262.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3. 设置浏览器代理 这里使用了Google浏览器<br> <img src="https://img-blog.csdnimg.cn/20191210105714965.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4.设置好代理后打开抓包工具 Burp Suite<br> <img src="https://img-blog.csdnimg.cn/20191210105747982.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>5.上传我们写好的木马 点go 上传<br> <img src="https://img-blog.csdnimg.cn/20191210105809168.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>6.抓包截取数据包后 在upload下建立一个后缀为.asp的目录 修改后放行<br><img src="https://img-blog.csdnimg.cn/20191210105831230.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>7.这里我们看到文件已经上传到服务器了 下面我们开始联菜刀<br> <img src="https://img-blog.csdnimg.cn/20191210105845852.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>8.链接菜刀前先把抓包拦截关闭 顺便把代理也关掉<br> <img src="https://img-blog.csdnimg.cn/2019121010590652.PNG" alt="在这里插入图片描述"><br>9.打开中国菜刀 右击添加 把服务器的ip加 端口 加我们木马的存放路径（就是返回地址）<br><img src="https://img-blog.csdnimg.cn/2019121010594784.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>10.密码是我们木马里面写的（这里是pass）<br> <img src="https://img-blog.csdnimg.cn/20191210110001393.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>11.脚本类型选择asp 点击添加 然后链接木马<br> <img src="https://img-blog.csdnimg.cn/20191210110014675.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>12.成功链接到到主机 在C盘根目录发现一个key_1224513461.txt的文件  但是我们没有打开权限<br>然后我们要开始提权<br><img src="https://img-blog.csdnimg.cn/20191210110032185.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>13.我们在我们上传木马的目录下上传一个 cmd.exe 的终端用来执行命令<br>下载链接  <a href="http://www.downcc.com/file/6296.html" target="_blank" rel="noopener">cmd.exe</a></p>
+<p><img src="https://img-blog.csdnimg.cn/20191210110443452.PNG" alt="在这里插入图片描述"></p>
+<p>14.右击cmd 点击虚拟终端<br>首先我们先设置终端的运行路径 用setp 加cmd.exe的路径。<br>setp C:\Inetpub\wwwroot\upload\cmd.exe<br> <img src="https://img-blog.csdnimg.cn/20191210110511944.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>15.设置好后我们再将将提权工具上传到主机 这里使用pr.exe提权工具<br><strong>！！！特别注意要先设置好cmd的运行路径后才上传pr.exe提权工具 否则可能不能提权！！！</strong></p>
+<p>下载链接     <a href="https://www.pw88.com/soft/87240.html" target="_blank" rel="noopener">pr.exe</a></p>
+<p><img src="https://img-blog.csdnimg.cn/20191210110528213.PNG" alt="在这里插入图片描述"><br>16.<br>这里提权有两种方式：<br>1.cd 到pr.exe 的存放目录下使用：pr.exe  “ type C:\KEY_1224513461.txt”<br>2.直接给出pr.exe的运行路径：C:\Inetpub\wwwroot\upload\pr.exe “type C:\KEY_1224513461”<br>双引号里面就是要执行的命令 也可以执行其他命令<br>这里我们看到我们成功打开了文件 最下面一行就是key<br><img src="https://img-blog.csdnimg.cn/20191210110537745.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>谢谢阅读 希望能帮到你</p>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" target="_blank" rel="noopener" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/15/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2_%E4%B8%BB%E6%9C%BA%E6%BA%A2%E5%87%BA%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%EF%BC%88%E5%8C%85%E5%90%AB%E5%B7%A5%E5%85%B7%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/11/05/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -214,8 +350,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
