@@ -14,6 +14,7 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 
 <script id="hexo-configurations">
@@ -25,14 +26,14 @@
     version: '7.7.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#ee3f4d","save":"auto"},
+    fancybox: true,
     mediumzoom: false,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    comments: {"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},
     algolia: {
       appID: '',
       apiKey: '',
@@ -139,17 +140,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-标签"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-标签"></i>标签<span class="badge">3</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-分类"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-分类"></i>分类<span class="badge">2</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-归档"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-归档"></i>归档<span class="badge">2</span></a>
 
   </li>
   </ul>
@@ -163,6 +164,8 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -181,7 +184,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/%E4%BD%BF%E7%94%A8node.js%E5%92%8Cexpress%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B7%AF%E7%94%B1%E5%92%8C%E6%95%B0%E6%8D%AE%E8%A1%A8.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="王癸萱">
       <meta itemprop="description" content="node.js,android,java,网络攻防,javascript">
     </span>
@@ -201,11 +204,37 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-01-15 15:34:38" itemprop="dateCreated datePublished" datetime="2020-01-15T15:34:38+08:00">2020-01-15</time>
+              <time title="创建时间：2020-01-16 15:24:26 / 修改时间：15:25:55" itemprop="dateCreated datePublished" datetime="2020-01-16T15:24:26+08:00">2020-01-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node-js/" itemprop="url" rel="index">
+                    <span itemprop="name">node.js</span>
+                  </a>
+                </span>
             </span>
 
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/blog/%E4%BD%BF%E7%94%A8node.js%E5%92%8Cexpress%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B7%AF%E7%94%B1%E5%92%8C%E6%95%B0%E6%8D%AE%E8%A1%A8.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/blog/%E4%BD%BF%E7%94%A8node.js%E5%92%8Cexpress%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B7%AF%E7%94%B1%E5%92%8C%E6%95%B0%E6%8D%AE%E8%A1%A8.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -218,11 +247,11 @@
       
           <p>当我们添加一个路由时 每次都需要在app.js 去设置路由 这样比较繁琐。<br><img src="https://img-blog.csdnimg.cn/2019062411254218.png" alt="app.js获取路由对象"><br><img src="https://img-blog.csdnimg.cn/2019062411265130.png" alt="设置路由"><br>我们可以通过创建一个模块来 自动设置文件夹下的所以路由。<br>在路由表文件夹下创建一个index.js<br>通过 fs 获取文件夹下所有.js的文件 index.js除外（readdirSync方法）<br>再获取文件的路径（forEach方法）  因为app.js里面设置的原理也是通过路径 来获取路由对象的<br>再通过数组保存路径</p>
 <p><img src="https://img-blog.csdnimg.cn/20190624114615572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">let fs=require(&apos;fs&apos;);</span><br><span class="line"></span><br><span class="line">let path=require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">let apis=[];</span><br><span class="line"></span><br><span class="line">fs.readdirSync(__dirname)</span><br><span class="line">.filter(function(filename)&#123;</span><br><span class="line">    return (filename!==&apos;index.js&apos;)&amp;&amp;(filename.slice(-3)===&apos;.js&apos;);</span><br><span class="line">&#125;)</span><br><span class="line">.forEach(function(filename)&#123;</span><br><span class="line">    let filepath=path.join(__dirname,filename);</span><br><span class="line">    apis.push(require(filepath))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var express=require(&apos;express&apos;);</span><br><span class="line">var router=express.Router();</span><br><span class="line"></span><br><span class="line">router.use(&apos;/&apos;,apis);</span><br><span class="line">module.exports=router;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">let fs=require(&apos;fs&apos;);</span><br><span class="line"></span><br><span class="line">let path=require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">let apis=[];</span><br><span class="line"></span><br><span class="line">fs.readdirSync(__dirname)</span><br><span class="line">.filter(function(filename)&amp;#123</span><br><span class="line">    return (filename!==&apos;index.js&apos;)&amp;&amp;(filename.slice(-3)===&apos;.js&apos;);</span><br><span class="line">&amp;#125)</span><br><span class="line">.forEach(function(filename)&amp;#123</span><br><span class="line">    let filepath=path.join(__dirname,filename);</span><br><span class="line">    apis.push(require(filepath))</span><br><span class="line">&amp;#125)</span><br><span class="line"></span><br><span class="line">var express=require(&apos;express&apos;);</span><br><span class="line">var router=express.Router();</span><br><span class="line"></span><br><span class="line">router.use(&apos;/&apos;,apis);</span><br><span class="line">module.exports=router;</span><br></pre></td></tr></table></figure>
 
 <p>代码如图<br>然后在app.js里面 添加一个模块的路由就行了 以后访问就是 <a href="http://localhost:3000/apis/xxx" target="_blank" rel="noopener">http://localhost:3000/apis/xxx</a><br>我这里用的自己主机<br>注意！！ url那里的apis 是和你自己设置路由的名字是一样的 不然不能访问</p>
 <p><img src="https://img-blog.csdnimg.cn/20190624115434259.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>下面我们来试试<br><img src="https://img-blog.csdnimg.cn/20190625152051681.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="使用postman 发送请求"><br><img src="https://img-blog.csdnimg.cn/20190625152403625.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="可以看到已经成功响应了"><br>数据库表的导入差不多 我在models 下建了table.js 模块<br>代码如下<br><img src="https://img-blog.csdnimg.cn/20190624120002212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">let Sequlize=require(&apos;sequelize&apos;);</span><br><span class="line"></span><br><span class="line">let fs=require(&apos;fs&apos;);</span><br><span class="line"></span><br><span class="line">let path=require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">let sequelize=new Sequlize(&quot;test&quot;,&quot;stu&quot;,&quot;Ydyykf17&quot;,&#123;</span><br><span class="line">  host:&quot;192.168.1.52&quot;,</span><br><span class="line">  dialect:&quot;mysql&quot;,</span><br><span class="line">  timezone:&quot;+8:00&quot;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">let db=&#123;&#125;;</span><br><span class="line">fs.readdirSync(__dirname)</span><br><span class="line">.filter(function(filename)</span><br><span class="line">&#123;</span><br><span class="line">  return (filename!==&apos;tables.js&apos;)&amp;&amp;(filename.slice(-3)===&apos;.js&apos;);</span><br><span class="line">&#125;)</span><br><span class="line">.forEach(function(filename)&#123;</span><br><span class="line">let filepath=path.join(__dirname,filename);</span><br><span class="line">let model=sequelize.import(filepath);</span><br><span class="line">db[model.name]=model;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">sequelize.sync();</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  db</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">let Sequlize=require(&apos;sequelize&apos;);</span><br><span class="line"></span><br><span class="line">let fs=require(&apos;fs&apos;);</span><br><span class="line"></span><br><span class="line">let path=require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">let sequelize=new Sequlize(&quot;test&quot;,&quot;stu&quot;,&quot;Ydyykf17&quot;,&amp;#123</span><br><span class="line">  host:&quot;192.168.1.52&quot;,</span><br><span class="line">  dialect:&quot;mysql&quot;,</span><br><span class="line">  timezone:&quot;+8:00&quot;</span><br><span class="line">&amp;#125)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">let db=&amp;#123&amp;#125;</span><br><span class="line">fs.readdirSync(__dirname)</span><br><span class="line">.filter(function(filename)</span><br><span class="line">&amp;#123</span><br><span class="line">  return (filename!==&apos;tables.js&apos;)&amp;&amp;(filename.slice(-3)===&apos;.js&apos;);</span><br><span class="line">&amp;#125)</span><br><span class="line">.forEach(function(filename)&amp;#123</span><br><span class="line">let filepath=path.join(__dirname,filename);</span><br><span class="line">let model=sequelize.import(filepath);</span><br><span class="line">db[model.name]=model;</span><br><span class="line"></span><br><span class="line">&amp;#125)</span><br><span class="line">sequelize.sync();</span><br><span class="line">module.exports = &amp;#123</span><br><span class="line">  db</span><br><span class="line">&amp;#125;</span><br></pre></td></tr></table></figure>
 
 
 <p>第一次写 不足之处可以支持 一起进步<br>谢谢哦</p>
@@ -248,7 +277,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2_%E4%B8%BB%E6%9C%BA%E6%BA%A2%E5%87%BA%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%EF%BC%88%E5%8C%85%E5%90%AB%E5%B7%A5%E5%85%B7%EF%BC%89.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="王癸萱">
       <meta itemprop="description" content="node.js,android,java,网络攻防,javascript">
     </span>
@@ -268,12 +297,43 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-01-15 11:28:29 / 修改时间：16:53:02" itemprop="dateCreated datePublished" datetime="2020-01-15T11:28:29+08:00">2020-01-15</time>
+              <time title="创建时间：2020-01-15 11:28:29" itemprop="dateCreated datePublished" datetime="2020-01-15T11:28:29+08:00">2020-01-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-16 10:25:45" itemprop="dateModified" datetime="2020-01-16T10:25:45+08:00">2020-01-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2/" itemprop="url" rel="index">
+                    <span itemprop="name">网络攻防</span>
+                  </a>
+                </span>
             </span>
 
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/blog/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2_%E4%B8%BB%E6%9C%BA%E6%BA%A2%E5%87%BA%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%EF%BC%88%E5%8C%85%E5%90%AB%E5%B7%A5%E5%85%B7%EF%BC%89.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/blog/%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2_%E4%B8%BB%E6%9C%BA%E6%BA%A2%E5%87%BA%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%EF%BC%88%E5%8C%85%E5%90%AB%E5%B7%A5%E5%85%B7%EF%BC%89.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -284,7 +344,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>1.启动环境</p>
+          <h2 id="墨者学院之主机溢出提权漏洞分析（包含提权工具）"><a href="#墨者学院之主机溢出提权漏洞分析（包含提权工具）" class="headerlink" title="墨者学院之主机溢出提权漏洞分析（包含提权工具）"></a><strong>墨者学院之主机溢出提权漏洞分析（包含提权工具）</strong></h2><p>1.启动环境</p>
 <p><img src="https://img-blog.csdnimg.cn/20191210105620910.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.这里使用asp一句话木马 密码为pass<br><img src="https://img-blog.csdnimg.cn/20191210105700262.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3. 设置浏览器代理 这里使用了Google浏览器<br> <img src="https://img-blog.csdnimg.cn/20191210105714965.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4.设置好代理后打开抓包工具 Burp Suite<br> <img src="https://img-blog.csdnimg.cn/20191210105747982.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>5.上传我们写好的木马 点go 上传<br> <img src="https://img-blog.csdnimg.cn/20191210105809168.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>6.抓包截取数据包后 在upload下建立一个后缀为.asp的目录 修改后放行<br><img src="https://img-blog.csdnimg.cn/20191210105831230.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>7.这里我们看到文件已经上传到服务器了 下面我们开始联菜刀<br> <img src="https://img-blog.csdnimg.cn/20191210105845852.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>8.链接菜刀前先把抓包拦截关闭 顺便把代理也关掉<br> <img src="https://img-blog.csdnimg.cn/2019121010590652.PNG" alt="在这里插入图片描述"><br>9.打开中国菜刀 右击添加 把服务器的ip加 端口 加我们木马的存放路径（就是返回地址）<br><img src="https://img-blog.csdnimg.cn/2019121010594784.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>10.密码是我们木马里面写的（这里是pass）<br> <img src="https://img-blog.csdnimg.cn/20191210110001393.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
@@ -368,6 +428,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="王癸萱"
+      src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">王癸萱</p>
   <div class="site-description" itemprop="description">node.js,android,java,网络攻防,javascript</div>
 </div>
@@ -380,14 +442,28 @@
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/1103442828" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;1103442828" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://me.csdn.net/weixin_44253490" title="CSDN → https:&#x2F;&#x2F;me.csdn.net&#x2F;weixin_44253490" rel="noopener" target="_blank"><i class="fa fa-fw fa-csdn"></i>CSDN</a>
+      </span>
+  </div>
 
 
 
@@ -435,33 +511,73 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
 
-  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: true,
+      appId: 'BLfDTKxkvU8SNQVjCPDLeg4z-gzGzoHsz',
+      appKey: '3MwrsKQaeE42n36PfeWXJ2F9',
+      placeholder: "留言区",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: false,
+      lang: 'zh-cn' || 'zh-cn',
+      path: location.pathname,
+      recordIP: false,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>
