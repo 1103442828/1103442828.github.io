@@ -6,8 +6,8 @@
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/shu2.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/shu.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
   <meta name="google-site-verification" content="true">
 
@@ -48,13 +48,13 @@
   };
 </script>
 
-  <meta name="description" content="墨者学院之主机溢出提权漏洞分析（包含提权工具）1.启动环境 2.这里使用asp一句话木马 密码为pass3. 设置浏览器代理 这里使用了Google浏览器 4.设置好代理后打开抓包工具 Burp Suite 5.上传我们写好的木马 点go 上传  6.抓包截取数据包后 在upload下建立一个后缀为.asp的目录 修改后放行 7.这里我们看到文件已经上传到服务器了 下面我们开始联菜刀 8.链接菜刀">
+  <meta name="description" content="主机提权操作">
 <meta name="keywords" content="网络攻防,主机提权">
 <meta property="og:type" content="article">
 <meta property="og:title" content="墨者学院_主机溢出提权漏洞（包含工具）">
 <meta property="og:url" content="https:&#x2F;&#x2F;1103442828.github.io&#x2F;blog&#x2F;%E5%A2%A8%E8%80%85%E5%AD%A6%E9%99%A2_%E4%B8%BB%E6%9C%BA%E6%BA%A2%E5%87%BA%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%EF%BC%88%E5%8C%85%E5%90%AB%E5%B7%A5%E5%85%B7%EF%BC%89.html">
 <meta property="og:site_name" content="梢的博客">
-<meta property="og:description" content="墨者学院之主机溢出提权漏洞分析（包含提权工具）1.启动环境 2.这里使用asp一句话木马 密码为pass3. 设置浏览器代理 这里使用了Google浏览器 4.设置好代理后打开抓包工具 Burp Suite 5.上传我们写好的木马 点go 上传  6.抓包截取数据包后 在upload下建立一个后缀为.asp的目录 修改后放行 7.这里我们看到文件已经上传到服务器了 下面我们开始联菜刀 8.链接菜刀">
+<meta property="og:description" content="主机提权操作">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210105620910.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210105700262.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
@@ -72,7 +72,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210110511944.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210110528213.PNG">
 <meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210110537745.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2020-01-16T02:25:45.581Z">
+<meta property="og:updated_time" content="2020-01-17T08:58:33.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191210105620910.PNG?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70">
 
@@ -183,7 +183,6 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
-  <div class="reading-progress-bar"></div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
@@ -230,7 +229,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-16 10:25:45" itemprop="dateModified" datetime="2020-01-16T10:25:45+08:00">2020-01-16</time>
+                <time title="修改时间：2020-01-17 16:58:33" itemprop="dateModified" datetime="2020-01-17T16:58:33+08:00">2020-01-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,6 +265,7 @@
   </span>
   
   
+            <div class="post-description">主机提权操作</div>
 
         </div>
       </header>
@@ -276,8 +276,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="墨者学院之主机溢出提权漏洞分析（包含提权工具）"><a href="#墨者学院之主机溢出提权漏洞分析（包含提权工具）" class="headerlink" title="墨者学院之主机溢出提权漏洞分析（包含提权工具）"></a><strong>墨者学院之主机溢出提权漏洞分析（包含提权工具）</strong></h2><p>1.启动环境</p>
-<p><img src="https://img-blog.csdnimg.cn/20191210105620910.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.这里使用asp一句话木马 密码为pass<br><img src="https://img-blog.csdnimg.cn/20191210105700262.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3. 设置浏览器代理 这里使用了Google浏览器<br> <img src="https://img-blog.csdnimg.cn/20191210105714965.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4.设置好代理后打开抓包工具 Burp Suite<br> <img src="https://img-blog.csdnimg.cn/20191210105747982.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>5.上传我们写好的木马 点go 上传<br> <img src="https://img-blog.csdnimg.cn/20191210105809168.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+        <p>1.启动环境</p>
+<p><img src="https://img-blog.csdnimg.cn/20191210105620910.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>2.这里使用asp一句话木马 密码为pass<br><img src="https://img-blog.csdnimg.cn/20191210105700262.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3. 设置浏览器代理 这里使用了Google浏览器<br> <img src="https://img-blog.csdnimg.cn/20191210105714965.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4.设置好代理后打开抓包工具 Burp Suite<br> <img src="https://img-blog.csdnimg.cn/20191210105747982.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>5.上传我们写好的木马 点go 上传<br> <img src="https://img-blog.csdnimg.cn/20191210105809168.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>6.抓包截取数据包后 在upload下建立一个后缀为.asp的目录 修改后放行<br><img src="https://img-blog.csdnimg.cn/20191210105831230.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>7.这里我们看到文件已经上传到服务器了 下面我们开始联菜刀<br> <img src="https://img-blog.csdnimg.cn/20191210105845852.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>8.链接菜刀前先把抓包拦截关闭 顺便把代理也关掉<br> <img src="https://img-blog.csdnimg.cn/2019121010590652.PNG" alt="在这里插入图片描述"><br>9.打开中国菜刀 右击添加 把服务器的ip加 端口 加我们木马的存放路径（就是返回地址）<br><img src="https://img-blog.csdnimg.cn/2019121010594784.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>10.密码是我们木马里面写的（这里是pass）<br> <img src="https://img-blog.csdnimg.cn/20191210110001393.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>11.脚本类型选择asp 点击添加 然后链接木马<br> <img src="https://img-blog.csdnimg.cn/20191210110014675.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>12.成功链接到到主机 在C盘根目录发现一个key_1224513461.txt的文件  但是我们没有打开权限<br>然后我们要开始提权<br><img src="https://img-blog.csdnimg.cn/20191210110032185.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
@@ -288,7 +289,15 @@
 <p><img src="https://img-blog.csdnimg.cn/20191210110528213.PNG" alt="在这里插入图片描述"><br>16.<br>这里提权有两种方式：<br>1.cd 到pr.exe 的存放目录下使用：pr.exe  “ type C:\KEY_1224513461.txt”<br>2.直接给出pr.exe的运行路径：C:\Inetpub\wwwroot\upload\pr.exe “type C:\KEY_1224513461”<br>双引号里面就是要执行的命令 也可以执行其他命令<br>这里我们看到我们成功打开了文件 最下面一行就是key<br><img src="https://img-blog.csdnimg.cn/20191210110537745.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDI1MzQ5MA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>谢谢阅读 希望能帮到你</p>
 
     </div>
-
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------我是有底线的<i class="fa fa-duotone"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
     
     
     
@@ -390,7 +399,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#墨者学院之主机溢出提权漏洞分析（包含提权工具）"><span class="nav-number">1.</span> <span class="nav-text">墨者学院之主机溢出提权漏洞分析（包含提权工具）</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
