@@ -1,12 +1,15 @@
 User-agent: *
 Allow: /
 Allow: /archives/
-Allow: /tags/
 Allow: /categories/
-Allow: /about/
-
+Allow: /tags/ 
+Allow: /resources/ 
+Disallow: /vendors/
 Disallow: /js/
 Disallow: /css/
-Disallow: /lib/
+Disallow: /fonts/
+Disallow: /vendors/
+Disallow: /fancybox/
 
+Sitemap: https://1103442828.github.io/sitemap.xml
 Sitemap: https://1103442828.github.io/baidusitemap.xml
