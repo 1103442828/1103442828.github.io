@@ -1203,12 +1203,6 @@ pre .javascript .function {
   padding: 2px;
   border-radius: 50%;
 }
-.site-author-image {
-  transition: transform 1s ease-out;
-}
-.site-author-image:hover {
-  transform: rotateZ(360deg);
-}
 .site-author-name {
   color: #222;
   font-weight: 600;
@@ -1235,7 +1229,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #71055d;
+  background: #29f94b;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1571,16 +1565,6 @@ pre .javascript .function {
     left: 20px;
     opacity: 0.8;
   }
-}
-.reading-progress-bar {
-  background: #37c6c0;
-  display: block;
-  height: 3px;
-  left: 0;
-  position: fixed;
-  bottom: 0;
-  width: 0;
-  z-index: 1500;
 }
 .post-body {
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
